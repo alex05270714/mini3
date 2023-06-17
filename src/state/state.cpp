@@ -11,11 +11,13 @@
  * 
  * @return int 
  */
+
 int State::evaluate(){
   // [TODO] design your own evaluation function
+
   int my_score,enemy_score;
-  auto my_board = this->board.board[this->player];
-  auto enemy_board = this->board.board[1-this->player];
+  auto my_board = this->board.board[0];
+  auto enemy_board = this->board.board[1];
   for(int i=0; i<BOARD_H; i+=1)
   {
       for(int j=0; j<BOARD_W; j+=1)
