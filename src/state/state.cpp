@@ -14,15 +14,15 @@
 int State::evaluate(){
   // [TODO] design your own evaluation function
   int my_score,enemy_score;
-  auto my_board = this->board.board[0];
-  auto enemy_board = this->board.board[1];
+  auto my_board = this->board.board[this->player];
+  auto enemy_board = this->board.board[1-this->player];
   for(int i=0; i<BOARD_H; i+=1)
   {
-    for(int j=0; j<BOARD_W; j+=1)
-    {
-        my_score += value[my_board[i][j]];
-        enemy_score += value[enemy_board[i][j]];
-    }
+      for(int j=0; j<BOARD_W; j+=1)
+      {
+          my_score += value[my_board[i][j]];
+          enemy_score += value[enemy_board[i][j]];
+      }
   }
   return my_score - enemy_score;
 }
