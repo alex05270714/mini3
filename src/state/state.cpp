@@ -5,6 +5,13 @@
 #include "./state.hpp"
 #include "../config.hpp"
 
+std :: map <int,int> value = {
+  { 1 , 2 },
+  { 2 , 6 },
+  { 3 , 7 },
+  { 4 , 8 },
+  { 5 , 20 }
+};
 
 /**
  * @brief evaluate the state
@@ -15,7 +22,7 @@
 int State::evaluate(){
   // [TODO] design your own evaluation function
 
-  int my_score,enemy_score;
+  int my_score = 0 ,enemy_score = 0;
   auto my_board = this->board.board[0];
   auto enemy_board = this->board.board[1];
   for(int i=0; i<BOARD_H; i+=1)
