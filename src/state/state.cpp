@@ -13,7 +13,18 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+  int my_score,enemy_score;
+  auto my_board = this->board.board[0];
+  auto enemy_board = this->board.board[1];
+  for(int i=0; i<BOARD_H; i+=1)
+  {
+    for(int j=0; j<BOARD_W; j+=1)
+    {
+        my_score += value[my_board[i][j]];
+        enemy_score += value[enemy_board[i][j]];
+    }
+  }
+  return my_score - enemy_score;
 }
 
 

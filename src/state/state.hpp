@@ -5,8 +5,16 @@
 #include <cstdlib>
 #include <vector>
 #include <utility>
-
+#include <map>
 #include "../config.hpp"
+
+std :: map <int,int> value = {
+  { 1 , 2 },
+  { 2 , 6 },
+  { 3 , 7 },
+  { 4 , 8 },
+  { 5 , 20 }
+};
 
 
 typedef std::pair<size_t, size_t> Point;
