@@ -16,42 +16,41 @@ Move Minimax::get_move(State *state, int depth,int player) {
    
     state->get_legal_actions();
     Move to_return;
-    for ( auto action : state->legal_actions)
+    
+    if (player)
     {
-        if (player)
-        {
-            int best_move_value = INT_MIN;
-            for ( auto action : state->legal_actions)
-            {       
-                int try_value = minimax(state->next_state(action),depth - 1, false);
-                
-                if(try_value > best_move_value )
-                {
-                    best_move_value = try_value;
-                    to_return = action ;
-                }
+        int best_move_value = INT_MIN;
+        for ( auto action : state->legal_actions)
+        {       
+            int try_value = minimax(state->next_state(action),depth - 1, false);
+            
+            if(try_value > best_move_value )
+            {
+                best_move_value = try_value;
+                to_return = action ;
             }
-            return to_return;
         }
-        else
-        {
-            int best_move_value = INT_MAX;
-            for ( auto action : state->legal_actions)
-            {       
-                int try_value = minimax(state->next_state(action),depth - 1, true);
-                if(try_value < best_move_value )
-                {
-                    best_move_value = try_value;
-                    to_return = action ;
-                }
-            }
-            return to_return;
-        }
+        return to_return;
     }
+    else
+    {
+        int best_move_value = INT_MAX;
+        for ( auto action : state->legal_actions)
+        {       
+            int try_value = minimax(state->next_state(action),depth - 1, true);
+            if(try_value < best_move_value )
+            {
+                best_move_value = try_value;
+                to_return = action ;
+            }
+        }
+        return to_return;
+    }
+    
     
 }
 
-int Minimax::minimax(State *state, int depth , bool maximizingPlayer )
+int Minimax::minimax(State *state, int depth , bool maximizingPlayer)
 {
     state->get_legal_actions();
     if(depth == 0 || state -> game_state == WIN)
@@ -63,7 +62,7 @@ int Minimax::minimax(State *state, int depth , bool maximizingPlayer )
         int best_move_value = INT_MIN;
         for ( auto action : state->legal_actions)
         {       
-            int try_value = minimax(state->next_state(action),depth - 1, false);
+            int try_value = minimax(state->next_state(action),depth - 1, false );
             
             if(try_value > best_move_value )
             {
@@ -77,7 +76,7 @@ int Minimax::minimax(State *state, int depth , bool maximizingPlayer )
         int best_move_value = INT_MAX;
         for ( auto action : state->legal_actions)
         {       
-            int try_value = minimax(state->next_state(action),depth - 1, true);
+            int try_value = minimax(state->next_state(action),depth - 1, true );
             if(try_value < best_move_value )
             {
                 best_move_value = try_value;
