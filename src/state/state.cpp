@@ -10,7 +10,8 @@ std :: map <int,int> value = {
   { 2 , 6 },
   { 3 , 7 },
   { 4 , 8 },
-  { 5 , 20 }
+  { 5 , 20 },
+  { 6 , 1000}
 };
 
 /**
@@ -29,8 +30,14 @@ int State::evaluate(){
   {
       for(int j=0; j<BOARD_W; j+=1)
       {
-          my_score += value[my_board[i][j]];
-          enemy_score += value[enemy_board[i][j]];
+          int me_to_add = value[my_board[i][j]] , enemy_to_add = value[enemy_board[i][j]] ;
+          
+          if((i == 3 || i == 4) && j == 2 && me_to_add <= 7 && me_to_add >= 2 )
+            me_to_add += 5;
+          if(enemy_to_add <= 20 && enemy_to_add != 0 && enemy_to_add <= 7 && enemy_to_add >= 2)
+            enemy_to_add += 5;
+          my_score += me_to_add ;
+          enemy_score += enemy_to_add ;
       }
   }
   return my_score - enemy_score;
