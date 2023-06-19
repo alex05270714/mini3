@@ -41,15 +41,17 @@ void read_board(std::ifstream& fin) {
  */
 void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
+  int depth = 1;
   while(true) {
     // Choose a random spot.
-    auto move = Alpha_beta::get_move(root, 5, 1-root->player,INT_MIN,INT_MAX); // 改
+    auto move = Alpha_beta::get_move(root, depth, root->player,INT_MIN,INT_MAX); // 改
+    depth ++;
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
     
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
-    break;
+    
   }
 }
 
