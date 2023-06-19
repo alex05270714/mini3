@@ -58,6 +58,11 @@ class State{
     void get_legal_actions();
     std::string encode_output();
     std::string encode_state();
+
+    int is_road_empty(char castle_or_queen,int x,int y);
+
 };
+
+
 
 #endif

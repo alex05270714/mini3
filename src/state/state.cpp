@@ -11,7 +11,7 @@ std :: map <int,int> value = {
   { 3 , 7 },
   { 4 , 8 },
   { 5 , 20 },
-  { 6 , 1000}
+  { 6 , 10000}
 };
 
 /**
@@ -19,6 +19,49 @@ std :: map <int,int> value = {
  * 
  * @return int 
  */
+
+// int  State:: is_road_empty(char castle_or_queen,int x,int y)
+// {
+//   int to_return = 0;
+//   auto my_board = this->board.board[player];
+  
+  
+//   for(int i = y; i < BOARD_H ; i++)
+//   {
+//       if(my_board[i][x] == 0)
+//       {
+//         to_return +=5;
+//       }
+//       else break;
+//   }
+//   // for(int i = y; i >= 0 ; i--)
+//   // {
+//   //     if(my_board[i][x] == 0)
+//   //     {
+//   //       to_return +=5;
+//   //     }
+//   //     else break;
+//   // }
+//   // for(int i = x; i < BOARD_W ; i++)
+//   // {
+//   //     if(my_board[y][i] == 0)
+//   //     {
+//   //       to_return +=3;
+//   //     }
+//   //     else break;
+//   // }
+//   // for(int i = x; i >= 0 ; i--)
+//   // {
+//   //     if(my_board[y][i] == 0)
+//   //     {
+//   //       to_return +=3;
+//   //     }
+//   //     else break;
+//   // }
+//   return to_return;
+// }
+
+
 
 int State::evaluate(){
   // [TODO] design your own evaluation function
@@ -30,14 +73,28 @@ int State::evaluate(){
   {
       for(int j=0; j<BOARD_W; j+=1)
       {
-          int me_to_add = value[my_board[i][j]] , enemy_to_add = value[enemy_board[i][j]] ;
+          int me_to_add = value[(int)my_board[i][j]] , enemy_to_add = value[(int)enemy_board[i][j]] ;
           
-          if((i == 3 || i == 4) && j == 2 && me_to_add <= 7 && me_to_add >= 2 )
+          if((i == 2 || i == 3) && j == 2  && (int)my_board[i][j] != 0)
             me_to_add += 5;
-          if(enemy_to_add <= 20 && enemy_to_add != 0 && enemy_to_add <= 7 && enemy_to_add >= 2)
+          if((i == 2 || i == 3) && j == 2  && (int)enemy_board[i][j] != 0)
             enemy_to_add += 5;
+          if( (i == 1 || i == 2 || i == 3 || i == 4) && ( j == 1 ||  j == 3 ) && (int)my_board[i][j] != 0 )
+            me_to_add += 1;
+          if( (i == 1 || i == 2 || i == 3 || i == 4) && ( j == 1 ||  j == 3 ) && (int)enemy_board[i][j] != 0 )
+            enemy_to_add += 1;
+
+
           my_score += me_to_add ;
           enemy_score += enemy_to_add ;
+          // if (my_board[i][j] == 2  || my_board[i][j] == 5)
+          // {
+          //   my_score += is_road_empty('c' , j , i );
+          // }
+          // if (enemy_board[i][j] == 2 || enemy_board[i][j] == 5)
+          // {
+          //   enemy_board += is_road_empty('c' , j , i );
+          // }
       }
   }
   return my_score - enemy_score;
