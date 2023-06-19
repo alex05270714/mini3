@@ -11,7 +11,7 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-Move Minimax::get_move(State *state, int depth,int player) {
+Move Minimax::get_move(State *state, int depth, int player) {
     
    
     state->get_legal_actions();
@@ -52,8 +52,9 @@ Move Minimax::get_move(State *state, int depth,int player) {
 
 int Minimax::minimax(State *state, int depth , bool maximizingPlayer)
 {
-    state->get_legal_actions();
-    if(depth == 0 || state -> game_state == WIN)
+    if(state -> legal_actions.empty())
+        state->get_legal_actions();
+    if(depth == 0 || state -> legal_actions.empty())
     {
         return state -> evaluate();
     }
